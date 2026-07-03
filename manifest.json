@@ -1,47 +1,44 @@
-<!doctype html>
-<html lang="sk">
-  <head>
-    <meta charset="utf-8" />
-    <title>Bazoš Re-List Helper</title>
-    <link rel="stylesheet" href="popup.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Bazoš Re-List Helper</h1>
-    </header>
+{
+  "manifest_version": 3,
+  "name": "Bazoš Re-List Helper",
+  "version": "1.0.0",
+  "description": "Ulož si inzerát na bazos.sk jedným klikom a neskôr ho rýchlo znova vlož do formulára. Lokálne, bez servera a AI.",
 
-    <main>
-      <div id="empty-state" class="empty-state" hidden>
-        Zatiaľ nemáš žiadne uložené inzeráty.<br />
-        Otvor svoj živý inzerát na bazos.sk a klikni na
-        <em>„Uložiť na neskoršie znova-vystavenie“</em>.
-      </div>
+  "permissions": [
+    "storage"
+  ],
 
-      <ul id="listing-list" class="listing-list"></ul>
-    </main>
+  "host_permissions": [
+    "*://*.bazos.sk/*"
+  ],
 
-    <footer>
-      <button id="delete-all-btn" class="danger-btn">Vymazať všetko</button>
-    </footer>
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Bazoš Re-List Helper"
+  },
 
-    <!-- Template for one saved-listing row -->
-    <template id="listing-item-template">
-      <li class="listing-item">
-        <img class="thumb" alt="" />
-        <div class="info">
-          <div class="title"></div>
-          <div class="meta">
-            <span class="price"></span>
-            <span class="saved-at"></span>
-          </div>
-        </div>
-        <div class="actions">
-          <button class="copy-btn" title="Skopírovať dáta">📋 Skopírovať dáta</button>
-          <button class="delete-btn" title="Zmazať">🗑️ Zmazať</button>
-        </div>
-      </li>
-    </template>
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
 
-    <script src="popup.js"></script>
-  </body>
-</html>
+  "content_scripts": [
+    {
+      "matches": ["*://*.bazos.sk/*"],
+      "exclude_matches": ["*://*.bazos.sk/pridat-inzerat.php*"],
+      "js": ["content-scripts/capture.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://*.bazos.sk/pridat-inzerat.php*"],
+      "js": ["content-scripts/prefill.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,124 +1,66 @@
-* {
-  box-sizing: border-box;
-}
+# Bazoš Re-List Helper
 
-body {
-  margin: 0;
-  width: 340px;
-  max-height: 480px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  color: #222;
-  background: #fafafa;
-}
+A free Chrome extension that helps sellers on [bazos.sk](https://bazos.sk) — the largest classifieds site in Slovakia — quickly re-post listings that have expired or that they want to publish again, without retyping everything from scratch.
 
-header {
-  padding: 10px 12px;
-  background: #2e7d32;
-  color: #fff;
-}
+📦 Chrome Web Store: *link coming after review*
 
-header h1 {
-  margin: 0;
-  font-size: 15px;
-}
+![Screenshot of the extension popup showing saved listings](images/screenshot.png)
 
-main {
-  max-height: 380px;
-  overflow-y: auto;
-  padding: 8px;
-}
+## The problem
 
-.empty-state {
-  padding: 20px 10px;
-  text-align: center;
-  color: #666;
-  line-height: 1.5;
-}
+Listings on bazos.sk automatically expire after a set period. Re-posting one means manually retyping the title, description, price, category, and location — every single time, for every listing. For sellers managing more than a handful of items, this becomes repetitive, tedious work.
 
-.listing-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+## What it does
 
-.listing-item {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-  padding: 8px;
-  margin-bottom: 6px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-}
+1. **Save** — while viewing your own live listing on bazos.sk, click "Uložiť na neskoršie znova-vystavenie" to save its data (title, description, price, category, location, image URLs).
+2. **Re-list** — when you're ready to post again, open the "Pridať inzerát" form, open the extension popup, and pick the saved listing you want.
+3. **Prefill** — the form fields are filled in automatically. You review everything and click Bazoš's own submit button yourself — the extension never submits anything on your behalf.
 
-.listing-item .thumb {
-  width: 44px;
-  height: 44px;
-  object-fit: cover;
-  border-radius: 4px;
-  background: #eee;
-  flex-shrink: 0;
-}
+## Design principles
 
-.listing-item .info {
-  flex: 1;
-  min-width: 0;
-}
+- **100% client-side.** No backend, no server, no external API calls of any kind.
+- **No AI involved.** This is plain DOM scraping and form-filling — not generation. There's nothing to hallucinate.
+- **Local-only storage.** All data lives in `chrome.storage.local`, on the user's own machine. Nothing is ever transmitted anywhere.
+- **Minimal permissions.** The extension only requests `storage` and host access scoped to `*.bazos.sk` — not broad `<all_urls>` access.
+- **Human stays in control.** The extension fills a form; it never auto-submits it. Every re-post is a deliberate, reviewed action by the user.
 
-.listing-item .title {
-  font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+## Tech stack
 
-.listing-item .meta {
-  color: #666;
-  font-size: 11px;
-  display: flex;
-  gap: 8px;
-}
+Vanilla JavaScript, HTML, and CSS. No frameworks, no build step, no dependencies. Manifest V3.
 
-.listing-item .actions {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex-shrink: 0;
-}
+## Project structure
 
-.listing-item .actions button {
-  font-size: 11px;
-  padding: 4px 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #f5f5f5;
-  cursor: pointer;
-  white-space: nowrap;
-}
+    manifest.json              Extension manifest (Manifest V3)
+    content-scripts/
+      capture.js                Runs on live bazos.sk listing pages — scrapes and saves listing data
+      prefill.js                Runs on the "Pridať inzerát" page — fills the form from saved data
+    popup/
+      popup.html / .js / .css   The extension's popup UI — browse, pick, and manage saved listings
+    icons/                       Extension icons (16/48/128px)
+    docs/privacy.html            Privacy policy (hosted via GitHub Pages)
 
-.listing-item .actions button:hover {
-  background: #eee;
-}
+## Running it locally
 
-footer {
-  padding: 8px 12px;
-  border-top: 1px solid #e0e0e0;
-  background: #fff;
-}
+1. Clone this repo.
+2. Go to `chrome://extensions` in Chrome.
+3. Enable **Developer mode** (top right).
+4. Click **Load unpacked** and select the project folder.
+5. Visit bazos.sk and try it out.
 
-.danger-btn {
-  width: 100%;
-  padding: 8px;
-  background: #c62828;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 13px;
-}
+## Known limitation
 
-.danger-btn:hover {
-  background: #b71c1c;
-}
+Images can't be re-uploaded automatically — browsers don't allow extensions to programmatically attach files to a file input for security reasons. Saved image URLs are shown for reference so they can be re-downloaded and re-uploaded manually.
+
+## Privacy
+
+Full privacy policy: [docs/privacy.html](docs/privacy.html) (also hosted via GitHub Pages).
+
+In short: the extension collects no data beyond what the user explicitly saves from their own listings, stores it only locally in the browser, and never transmits it anywhere.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
+## Author
+
+Nino Stanislav Cehelský — [ns-cehelsky.github.io/portfolio](https://ns-cehelsky.github.io/portfolio) · ns.cehelsky@gmail.com

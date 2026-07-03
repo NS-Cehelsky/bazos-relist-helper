@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="sk">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bazoš Re-List Helper</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Bazoš Re-List Helper</h1>
+    </header>
+
+    <main>
+      <div id="empty-state" class="empty-state" hidden>
+        Zatiaľ nemáš žiadne uložené inzeráty.<br />
+        Otvor svoj živý inzerát na bazos.sk a klikni na
+        <em>„Uložiť na neskoršie znova-vystavenie“</em>.
+      </div>
+
+      <ul id="listing-list" class="listing-list"></ul>
+    </main>
+
+    <footer>
+      <button id="delete-all-btn" class="danger-btn">Vymazať všetko</button>
+    </footer>
+
+    <!-- Template for one saved-listing row -->
+    <template id="listing-item-template">
+      <li class="listing-item">
+        <img class="thumb" alt="" />
+        <div class="info">
+          <div class="title"></div>
+          <div class="meta">
+            <span class="price"></span>
+            <span class="saved-at"></span>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" title="Skopírovať dáta">📋 Skopírovať dáta</button>
+          <button class="delete-btn" title="Zmazať">🗑️ Zmazať</button>
+        </div>
+      </li>
+    </template>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

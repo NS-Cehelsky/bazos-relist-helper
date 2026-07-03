@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<title>Pravidlá ochrany súkromia — Bazoš Re-List Helper</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body { font-family: Arial, Helvetica, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #222; }
+  h1 { color: #2e7d32; }
+  h2 { color: #1b5e20; margin-top: 32px; }
+  .updated { color: #666; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<h1>Pravidlá ochrany súkromia — Bazoš Re-List Helper</h1>
+<p class="updated">Posledná aktualizácia: júl 2026</p>
+
+<p>Bazoš Re-List Helper je bezplatné rozšírenie do prehliadača Chrome, ktoré pomáha používateľom rýchlejšie znova vystavovať vlastné inzeráty na bazos.sk.</p>
+
+<h2>Aké dáta rozšírenie ukladá</h2>
+<p>Keď používateľ na vlastnom inzeráte klikne na tlačidlo „Uložiť na neskoršie znova-vystavenie“, rozšírenie uloží tieto údaje z daného inzerátu:</p>
+<ul>
+  <li>Názov inzerátu</li>
+  <li>Popis</li>
+  <li>Cena</li>
+  <li>Kategória</li>
+  <li>Lokalita (text uvedený v inzeráte)</li>
+  <li>Adresy URL obrázkov</li>
+</ul>
+
+<h2>Kde sa dáta ukladajú</h2>
+<p>Všetky dáta sa ukladajú výhradne lokálne v prehliadači používateľa pomocou rozhrania <code>chrome.storage.local</code>. Rozšírenie neposiela žiadne dáta na žiadny externý server, nepoužíva žiadne API tretích strán a nezhromažďuje dáta na diaľku. Dáta nikdy neopúšťajú zariadenie používateľa.</p>
+
+<h2>Zdieľanie dát</h2>
+<p>Rozšírenie nezdieľa, nepredáva ani neprenáša žiadne dáta žiadnym tretím stranám. Neexistuje žiadny backend ani server, ktorý by prevádzkoval vývojár rozšírenia.</p>
+
+<h2>Prístup k webovým stránkam</h2>
+<p>Rozšírenie funguje výhradne na doménach *.bazos.sk a nepristupuje k obsahu žiadnych iných webových stránok.</p>
+
+<h2>Vymazanie dát</h2>
+<p>Používateľ môže kedykoľvek vymazať všetky uložené dáta priamo v rozšírení (tlačidlo „Vymazať všetko“), alebo odinštalovaním rozšírenia z prehliadača — tým sa automaticky odstránia aj všetky lokálne uložené dáta.</p>
+
+<h2>Zmeny týchto pravidiel</h2>
+<p>Ak sa tieto pravidlá ochrany súkromia zmenia, aktualizovaná verzia bude zverejnená na tejto stránke.</p>
+
+<h2>Kontakt</h2>
+<p>V prípade otázok ma môžete kontaktovať na: ns.cehelsky@gmail.com</p>
+
+</body>
+</html>

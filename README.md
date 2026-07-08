@@ -2,7 +2,7 @@
 
 A free Chrome extension that helps sellers on [bazos.sk](https://bazos.sk) — the largest classifieds site in Slovakia — quickly re-post listings that have expired or that they want to publish again, without retyping everything from scratch.
 
-📦 Chrome Web Store: *link coming after review*
+Chrome Web Store: https://chromewebstore.google.com/detail/bazo%C5%A1-re-list-helper/jobmkbkoggbklekemkbddebmoancejeg
 
 ![Screenshot of the extension popup showing saved listings](images/screenshot.png)
 
@@ -53,7 +53,7 @@ Images can't be re-uploaded automatically — browsers don't allow extensions to
 
 ## Privacy
 
-Full privacy policy: [docs/privacy.html](docs/privacy.html) (also hosted via GitHub Pages).
+Full privacy policy: [docs/privacy.html](docs/privacy.html].
 
 In short: the extension collects no data beyond what the user explicitly saves from their own listings, stores it only locally in the browser, and never transmits it anywhere.
 
